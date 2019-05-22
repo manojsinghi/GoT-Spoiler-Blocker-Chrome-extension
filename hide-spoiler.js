@@ -46,6 +46,7 @@ function hideSpoiler(node) {
 	hideNode(node);
 }
 
+
 function hideNode(node) {
 	node.textContent = '[TEXT BLOCKED: SPOILER DETECTED]';
 	node.style.color = 'red'
