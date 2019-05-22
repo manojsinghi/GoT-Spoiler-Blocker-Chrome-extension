@@ -1,16 +1,17 @@
 kw = ['GOT', 'game of thrones', 'got spoiler', 'GoT', 'GOT Spoiler', 'Game of Thrones', 'GAME OF THRONES', 'death', 'DEAD', 'Dead', 'Died', 'DEATH', 'Death', 'DIED']
+//keywords for blocking GOT
 tags = "SPANEMBIULOLI";
 total = 0;
 
 for(var ii = 0; ii < kw.length; ii++)
 {
 	o = $(`:contains(${kw[ii]}):not(:has(:contains(${kw[ii]})))`)
+	//iterate all the html document file conataining list and headers
 	for(var i = 0; i < o.length; i++)
 	{
 		if (!o[i].parentNode || o[i].parentNode.nodeName === "BODY") {
           continue;
         }
-       // document.write(o[i].parentNode.nodeName);
 		hideSpoiler(o[i]);
 		total++;
 	}
@@ -26,10 +27,12 @@ function hideSpoiler(node) {
 	if(ancestor != null) {
 		if (ancestor.parentNode != null 
 				&& ancestor.tagName != 'BODY')
-				ancestor = ancestor.parentNode;	
+				ancestor = ancestor.parentNode;
+		//image blur all image blur if any keywords detected
 		imgs = ancestor.getElementsByTagName('img');
 		for(var i = 0; i < imgs.length; i++) 
 			imgs[i].style.webkitFilter = "blur(5px)"
+		//list containing all got keywords call hidenode function
 		lists = ancestor.getElementsByTagName('li');
 		for(var i = 0; i < lists.length; i++) hideNode(lists[i]);
 	}
